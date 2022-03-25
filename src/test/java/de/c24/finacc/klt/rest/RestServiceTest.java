@@ -1,18 +1,22 @@
 package de.c24.finacc.klt.rest;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * RestServiceTest
  */
 class RestServiceTest {
 
-    private RestService restService = new RestService();
+    @Mock
+    de.c24.finacc.klt.services.RateServiceImpl rateService;
+
+    private final RestService restService = new RestService(rateService);
 
     @Test
     @DisplayName("Simple test")
