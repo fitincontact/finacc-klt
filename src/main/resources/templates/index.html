@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}">KuK KLT</title>
@@ -8,5 +8,60 @@
 <h1 th:text="${welcome}"></h1>
 
 <h2 th:text="${applicationTitle}"></h2>
+
+<label for="baseAmount"></label>
+<input id="baseAmount" name="baseAmount" type="text"/>
+<p><select id="baseCurrency">
+    <option value="EUR">EUR</option>
+    <option value="USD">USD</option>
+    <option value="RUB">RUB</option>
+    <option value="CAD">CAD</option>
+</select></p>
+
+<p><select id="targetCurrency">
+    <option value="USD">USD</option>
+    <option value="EUR">EUR</option>
+    <option value="RUB">RUB</option>
+    <option value="CAD">CAD</option>
+</select></p>
+
+<p>
+    <button onClick="convert.call(this)">Convert</button>
+</p>
+
+<script>
+  function convert() {
+var oReq = new XMLHttpRequest();
+let xhr = new XMLHttpRequest();
+
+var baseCurrency = document.getElementById("baseCurrency");
+var targetCurrency = document.getElementById("targetCurrency");
+
+xhr.open(
+'GET',
+'http://localhost:8080/klt/api/latest/'+baseAmount.value+'/'+baseCurrency.value+'/'+targetCurrency.value+'/'
+);
+
+xhr.send();
+
+xhr.onload = function() {
+        var obj = JSON.parse(xhr.response);
+        amount.value = obj;
+};
+
+xhr.onprogress;
+
+xhr.onerror = function() {
+  alert("Problem with rest");
+};
+
+}
+
+
+</script>
+
+<label for="amount"></label>
+<input id="amount" name="amount" type="text"><br><br>
+
 </body>
 </html>

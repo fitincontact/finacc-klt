@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
-
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
@@ -17,5 +16,4 @@ public class SwaggerConfig {
                                 .version("1.0.0")
                 );
     }
-
 }

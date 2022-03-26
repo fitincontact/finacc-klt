@@ -9,6 +9,9 @@ import javax.annotation.Generated;
 import java.io.Serializable;
 import java.util.HashMap;
 
+/**
+ * Class for responce of currency web API
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("jsonschema2pojo")
 public class Data implements Serializable {

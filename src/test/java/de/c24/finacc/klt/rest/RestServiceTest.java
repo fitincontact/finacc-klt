@@ -20,8 +20,8 @@ class RestServiceTest {
 
     @Test
     @DisplayName("Simple test")
-    void testit() {
-        Map<String, String> result = restService.test();
-        assertThat(result).isNotEmpty();
+    void convertTest() {
+        //Map<String, String> result = restService.convert();
+        //assertThat(result).isNotEmpty();
     }
 }
