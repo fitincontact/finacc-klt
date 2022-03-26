@@ -23,7 +23,7 @@ public class RestService {
 
     @Operation(
             summary = "Currency converter",
-            description = "Return pair currency-amount"
+            description = "Return amount"
     )
     @ApiOperation(value = "Convert base amount base currency and target currency to target amount")
     @GetMapping("latest/{baseAmount}/{baseCurrency}/{targetCurrency}")
@@ -33,6 +33,6 @@ public class RestService {
             @PathVariable() @Parameter(description = "baseCurrency") String baseCurrency,
             @PathVariable() @Parameter(description = "targetCurrency") String targetCurrency
     ) {
-        return rateService.getExchange(baseAmount, baseCurrency, targetCurrency);
+        return rateService.convert(baseAmount, baseCurrency, targetCurrency);
     }
 }

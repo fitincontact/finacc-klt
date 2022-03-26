@@ -12,5 +12,5 @@ public interface RateService {
      * @param targetCurrency target currency
      * @return target amount
      */
-    Double getExchange(Double baseAmount, String baseCurrency, String targetCurrency);
+    Double convert(Double baseAmount, String baseCurrency, String targetCurrency);
 }

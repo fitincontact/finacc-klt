@@ -14,22 +14,22 @@ public class RateServiceImpl implements RateService {
     private final static String URL = "https://api.currencyapi.com/v3/latest?apikey=";
     private final static String KEY = "bbYjqtVfn8WXgD4LtUR4dKL9M6fnc6LUhD2YSr25";
     private final static String BASE_CURRENCY = "&base_currency=";
-    private final static String CURRENCIES = "&currencies=";
+    private final static String CURRENCY = "&currencies=";
 
     private final Builder builder;
 
-    public RateServiceImpl(WebClient.Builder builder) {
+    public RateServiceImpl(Builder builder) {
         this.builder = builder;
     }
 
     @Override
-    public Double getExchange(
+    public Double convert(
             Double baseAmount,
             String baseCurrency,
             String targetCurrency
     ) {
-        WebClient webClient = buildWebClient(baseCurrency, targetCurrency);
-        Data data = getData(webClient);
+        final var webClient = buildWebClient(baseCurrency, targetCurrency);
+        final var data = getData(webClient);
         return data.getProperty(targetCurrency).getValue() * baseAmount;
     }
 
@@ -37,9 +37,10 @@ public class RateServiceImpl implements RateService {
             String baseCurrency,
             String targetCurrency
     ) {
-        return builder
-                .baseUrl(URL + KEY + BASE_CURRENCY + baseCurrency + CURRENCIES + targetCurrency)
+        final var webClient = builder
+                .baseUrl(URL + KEY + BASE_CURRENCY + baseCurrency + CURRENCY + targetCurrency)
                 .build();
+        return webClient;
     }
 
     //todo maybe send unused a parameter baseCurrency+targetCurrency as unique key for @Cacheable
